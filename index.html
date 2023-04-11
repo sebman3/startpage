@@ -4,7 +4,6 @@
 <meta name="robots" content="noindex" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>~</title>
-
 <style>
   :root {
     --color-background: #111;
@@ -33,12 +32,11 @@
     }
   }
 </style>
-
 <script>
   const CONFIG = {
     commandPathDelimiter: '/',
     commandSearchDelimiter: ' ',
-    defaultSearchTemplate: 'https://www.startpage.com/sp/search?query={}',
+    defaultSearchTemplate: 'https://www.startpage.com/sp/search?query={}&t=device&lui=english&sc=3r8Z6TaodHKE00&cat=web&prfe=bbafe1608394d1ffe44a99e347f2f55d341adb05d5e26b590570de57993eacdf1b055c2c7b0c120515ba98298b2c7fc148c3744e47b5e2c27b71a5177b4f05f8bac111f44001afa78f7a0a69',
     openLinksInNewTab: true,
     rainColumns: 200,
     rainFade: 0.2,
@@ -47,198 +45,72 @@
     rainSpeed: 1,
     suggestionLimit: 4,
   };
-
   const COMMANDS = new Map([
-    [
-      'a',
-      {
-        name: 'AWS',
-        suggestions: [
-          'a/cognito/v2/idp/user-pools',
-          'a/dynamodbv2#item-explorer',
-        ],
-        url: 'https://us-west-2.console.aws.amazon.com/console/home',
-      },
-    ],
-    [
-      'b',
-      {
-        name: 'Dribbble',
-        searchTemplate: '/search/{}',
-        suggestions: [
-          'b/shots/popular/product-design',
-          'b/shots/popular/web-design',
-        ],
-        url: 'https://dribbble.com/shots/popular',
-      },
-    ],
-    [
-      'c',
-      {
-        name: 'Calendar',
-        searchTemplate: '/calendar/u/0/r/search?q={}',
-        suggestions: ['c/calendar/u/1/r', 'c/calendar/u/2/r'],
-        url: 'https://calendar.google.com/calendar/u/0/r',
-      },
-    ],
-    [
-      'd',
-      {
-        name: 'Drive',
-        searchTemplate: '/drive/u/0/search?q={}',
-        suggestions: ['d/drive/u/1/my-drive', 'd/drive/u/2/my-drive'],
-        url: 'https://drive.google.com/drive/u/0/my-drive',
-      },
-    ],
-    [
-      'e',
-      {
-        name: 'DALL·E',
-        suggestions: ['e/history', 'e/collections'],
-        url: 'https://labs.openai.com',
-      },
-    ],
-    [
-      'f',
-      {
-        name: 'Figma',
-        suggestions: [
-          'f/file/new',
-          'f/file/new?editor_type=whiteboard',
-          'f/community',
-        ],
-        url: 'https://www.figma.com/files/recent',
-      },
-    ],
-    [
-      'g',
-      {
-        name: 'GitHub',
-        searchTemplate: '/search?q={}',
-        suggestions: [
-          'g/topics',
-          'g/trending',
-          'g/collections',
-          'gist.github.com',
-        ],
-        url: 'https://github.com',
-      },
-    ],
-    [
-      'h',
-      {
-        name: 'Hypem',
-        searchTemplate: '/search/{}',
-        suggestions: ['h/stack', 'h/mixes', 'h/popular/lastweek', 'h/tags'],
-        url: 'https://hypem.com/popular',
-      },
-    ],
-    ['i', { name: 'ChatGPT', url: 'https://chat.openai.com/chat' }],
-    [
-      'k',
-      {
-        name: 'Keep',
-        searchTemplate: '/u/0/#search/text={}',
-        suggestions: ['k/u/1', 'k/u/2'],
-        url: 'https://keep.google.com/u/0',
-      },
-    ],
-    [
-      'l',
-      {
-        name: 'Translate',
-        searchTemplate: '/?sl=en&tl=es&text={}',
-        url: 'https://translate.google.com',
-      },
-    ],
-    ['m', { name: 'Mail', url: 'https://mail.proton.me/u/0/inbox' }],
-    ['n', { name: 'Notion', url: 'https://www.notion.so' }],
-    ['o', { name: 'Discord', url: 'https://discord.com/channels/@me' }],
-    [
-      'p',
-      {
-        name: 'Products',
-        searchTemplate: '/search?q={}',
-        suggestions: ['p/products', 'p/topics', 'p/time-travel'],
-        url: 'https://www.producthunt.com',
-      },
-    ],
-    [
-      'r',
-      {
-        name: 'Reddit',
-        searchTemplate: '/search?q={}',
-        suggestions: [
-          'r/r/webdev',
-          'r/r/startpages',
-          'r/r/onebag',
-          'r/r/fujix',
-        ],
-        url: 'https://www.reddit.com',
-      },
-    ],
-    [
-      's',
-      {
-        name: 'Slack',
-        suggestions: ['s/shiftnudge', 's/ayp'],
-        url: 'https://app.slack.com',
-      },
-    ],
-    ['s/shiftnudge', { command: 's/client/T09M5UWSV' }],
-    ['s/ayp', { command: 's/client/T03VB9LJ0AF' }],
-    [
-      't',
-      {
-        name: 'Twitter',
-        searchTemplate: '/search?q={}',
-        suggestions: [
-          't/explore/tabs/trending',
-          't/hashtag/buildinpublic?f=live',
-        ],
-        url: 'https://twitter.com/home',
-      },
-    ],
-    ['u', { name: 'Supabase', url: 'https://app.supabase.com/projects' }],
-    [
-      'v',
-      {
-        name: 'Vercel',
-        suggestions: ['v/dashboard/activity', 'v/dashboard/usage'],
-        url: 'https://vercel.com/dashboard',
-      },
-    ],
-    [
-      'w',
-      {
-        name: 'Wikipedia',
-        searchTemplate: '/w/index.php?search={}',
-        suggestions: ['w/wiki/Portal:Current_events', 'w/wiki/Special:Random'],
-        url: 'https://en.wikipedia.org/wiki/Main_Page',
-      },
-    ],
-    [
-      'y',
-      {
-        name: 'YouTube',
-        searchTemplate: '/results?search_query={}',
-        suggestions: ['y/trending', 'y/music', 'y/gaming', 'y/sports'],
-        url: 'https://youtube.com/feed/subscriptions',
-      },
-    ],
-    [
-      '0',
-      {
-        name: 'localhost',
-        searchTemplate: ':{}',
-        suggestions: ['0 54323', '0 8000'],
-        url: 'http://localhost:3000',
-      },
-    ],
-    ['?', { name: 'README', url: 'https://github.com/xvvvyz/tilde' }],
+
+    ['📬', {
+      name: 'Tutanota',
+      url: 'https://mail.tutanota.com'
+    }],
+    ['📬 ', {
+      name: 'SimpleLogin',
+      url: 'https://app.simplelogin.io/dashboard/'
+    }],
+
+    ['📂', {
+      name: 'OwnCloud',
+      url: 'https://drive.room300.net'
+    }],
+    ['📂 ', {
+      name: 'Music',
+      url: 'https://drive.room300.net'
+    }],
+
+    ['📺', {
+      name: 'Plex',
+      url: 'https://app.plex.tv'
+    }],
+    ['📺 ', {
+      name: 'Youtube',
+      url: 'https://youtube.com'
+    }],
+        ['📺  ', {
+      name: 'Youtube TV',
+      url: 'https://tv.youtube.com'
+    }],
+    ['🎵', {
+      name: 'Music Player',
+      url: 'https://drive.room300.net'
+    }],
+        ['🎵 ', {
+      name: 'Youtube Music',
+      url: 'https://music.youtube.com'
+    }],
+    ['🧰', {
+      name: 'Temp-Mail',
+      url: 'https://temp-mail.org/'
+    }],
+        ['🧰 ', {
+      name: 'Speedtest',
+      url: 'http://www.speedtest.net/'
+    }],
+    ['🧰  ', {
+      name: 'Pirateship',
+      url: 'https://ship.pirateship.com/ship'
+    }],
+    ['🧰   ', {
+      name: 'Piratebay',
+      url: 'https://ship.pirateship.com/ship'
+    }],
+    ['📱', {
+      name: '(Lib)Reddit',
+      url: 'https://libreddit.domain.glass/settings/restore/?theme=system&front_page=default&layout=card&wide=&comment_sort=confidence&show_nsfw=on&subscriptions=abandoned%2BAndroid%2Banime_titties%2Bask%2BAskReddit%2Bbyebyejob%2Bclevercomebacks%2Bcovidlonghaulers%2Bcrtgaming%2Bevilbuildings%2Bfakecartridges%2Bflipperzero%2BLibreWolf%2BLongCovid%2BNYStateOfMind%2Bps2%2BPublicFreakout%2BSteamDeck%2Burbanexploration%2Bprivacy'
+    }],
+    ['📱 ', {
+      name: 'Fb Marketplace',
+      url: 'https://www.facebook.com/marketplace/'
+    }],
   ]);
 </script>
-
 <template id="commands-template">
   <style>
     .commands {
@@ -306,7 +178,6 @@
     <menu class="commands"></menu>
   </nav>
 </template>
-
 <template id="command-template">
   <li>
     <a class="command" rel="noopener noreferrer">
@@ -315,18 +186,21 @@
     </a>
   </li>
 </template>
-
 <script type="module">
   class Commands extends HTMLElement {
     constructor() {
       super();
-      this.attachShadow({ mode: 'open' });
+      this.attachShadow({
+        mode: 'open'
+      });
       const template = document.getElementById('commands-template');
       const clone = template.content.cloneNode(true);
       const commands = clone.querySelector('.commands');
       const commandTemplate = document.getElementById('command-template');
-
-      for (const [key, { name, url }] of COMMANDS.entries()) {
+      for (const [key, {
+          name,
+          url
+        }] of COMMANDS.entries()) {
         if (!name || !url) continue;
         const clone = commandTemplate.content.cloneNode(true);
         const command = clone.querySelector('.command');
@@ -336,14 +210,11 @@
         clone.querySelector('.name').innerText = name;
         commands.append(clone);
       }
-
       this.shadowRoot.append(clone);
     }
   }
-
   customElements.define('commands-component', Commands);
 </script>
-
 <template id="search-template">
   <style>
     input,
@@ -455,27 +326,25 @@
     </form>
   </dialog>
 </template>
-
 <template id="suggestion-template">
   <li>
     <button class="suggestion" type="button"></button>
   </li>
 </template>
-
 <template id="match-template">
   <span class="match"></span>
 </template>
-
 <script type="module">
   class Search extends HTMLElement {
     #dialog;
     #form;
     #input;
     #suggestions;
-
     constructor() {
       super();
-      this.attachShadow({ mode: 'open' });
+      this.attachShadow({
+        mode: 'open'
+      });
       const template = document.getElementById('search-template');
       const clone = template.content.cloneNode(true);
       this.#dialog = clone.querySelector('.dialog');
@@ -488,36 +357,32 @@
       document.addEventListener('keydown', this.#onKeydown);
       this.shadowRoot.append(clone);
     }
-
-    static #attachSearchPrefix(array, { key, splitBy }) {
+    static #attachSearchPrefix(array, {
+      key,
+      splitBy
+    }) {
       if (!splitBy) return array;
       return array.map((search) => `${key}${splitBy}${search}`);
     }
-
     static #escapeRegexCharacters(s) {
       return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
     }
-
     static #fetchDuckDuckGoSuggestions(search) {
       return new Promise((resolve) => {
         window.autocompleteCallback = (res) => {
           const suggestions = [];
-
           for (const item of res) {
             if (item.phrase === search.toLowerCase()) continue;
             suggestions.push(item.phrase);
           }
-
           resolve(suggestions);
         };
-
         const script = document.createElement('script');
         document.querySelector('head').appendChild(script);
         script.src = `https://duckduckgo.com/ac/?callback=autocompleteCallback&q=${search}`;
         script.onload = script.remove;
       });
     }
-
     static #formatSearchUrl(url, searchPath, search) {
       if (!searchPath) return url;
       const [baseUrl] = Search.#splitUrl(url);
@@ -525,53 +390,74 @@
       searchPath = searchPath.replace(/{}/g, urlQuery);
       return baseUrl + searchPath;
     }
-
     static #hasProtocol(s) {
       return /^[a-zA-Z]+:\/\//i.test(s);
     }
-
     static #isUrl(s) {
       return /^((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)$/i.test(s);
     }
-
     static #parseQuery = (raw) => {
       const query = raw.trim();
-
       if (this.#isUrl(query)) {
         const url = this.#hasProtocol(query) ? query : `https://${query}`;
-        return { query, url };
+        return {
+          query,
+          url
+        };
       }
-
       if (COMMANDS.has(query)) {
-        const { command, key, url } = COMMANDS.get(query);
-        return command ? Search.#parseQuery(command) : { key, query, url };
+        const {
+          command,
+          key,
+          url
+        } = COMMANDS.get(query);
+        return command ? Search.#parseQuery(command) : {
+          key,
+          query,
+          url
+        };
       }
-
       let splitBy = CONFIG.commandSearchDelimiter;
       const [searchKey, rawSearch] = query.split(new RegExp(`${splitBy}(.*)`));
-
       if (COMMANDS.has(searchKey)) {
-        const { searchTemplate, url: base } = COMMANDS.get(searchKey);
+        const {
+          searchTemplate,
+          url: base
+        } = COMMANDS.get(searchKey);
         const search = rawSearch.trim();
         const url = Search.#formatSearchUrl(base, searchTemplate, search);
-        return { key: searchKey, query, search, splitBy, url };
+        return {
+          key: searchKey,
+          query,
+          search,
+          splitBy,
+          url
+        };
       }
-
       splitBy = CONFIG.commandPathDelimiter;
       const [pathKey, path] = query.split(new RegExp(`${splitBy}(.*)`));
-
       if (COMMANDS.has(pathKey)) {
-        const { url: base } = COMMANDS.get(pathKey);
+        const {
+          url: base
+        } = COMMANDS.get(pathKey);
         const [baseUrl] = Search.#splitUrl(base);
         const url = `${baseUrl}/${path}`;
-        return { key: pathKey, path, query, splitBy, url };
+        return {
+          key: pathKey,
+          path,
+          query,
+          splitBy,
+          url
+        };
       }
-
       const [baseUrl, rest] = Search.#splitUrl(CONFIG.defaultSearchTemplate);
       const url = Search.#formatSearchUrl(baseUrl, rest, query);
-      return { query, search: query, url };
+      return {
+        query,
+        search: query,
+        url
+      };
     };
-
     static #splitUrl(url) {
       const parser = document.createElement('a');
       parser.href = url;
@@ -579,110 +465,91 @@
       const rest = `${parser.pathname}${parser.search}`;
       return [baseUrl, rest];
     }
-
     #close() {
       this.#input.value = '';
       this.#input.blur();
       this.#dialog.close();
       this.#suggestions.innerHTML = '';
     }
-
     #execute(query) {
-      const { url } = Search.#parseQuery(query);
+      const {
+        url
+      } = Search.#parseQuery(query);
       const target = CONFIG.openLinksInNewTab ? '_blank' : '_self';
       window.open(url, target, 'noopener noreferrer');
       this.#close();
     }
-
     #focusNextSuggestion(previous = false) {
       const active = this.shadowRoot.activeElement;
       let nextIndex;
-
       if (active.dataset.index) {
         const activeIndex = Number(active.dataset.index);
         nextIndex = previous ? activeIndex - 1 : activeIndex + 1;
       } else {
         nextIndex = previous ? this.#suggestions.childElementCount - 1 : 0;
       }
-
       const next = this.#suggestions.children[nextIndex];
       if (next) next.querySelector('.suggestion').focus();
       else this.#input.focus();
     }
-
     #onInput = async () => {
       const oq = Search.#parseQuery(this.#input.value);
-
       if (!oq.query) {
         this.#close();
         return;
       }
-
       let suggestions = COMMANDS.get(oq.query)?.suggestions ?? [];
-
       if (oq.search && suggestions.length < CONFIG.suggestionLimit) {
         const res = await Search.#fetchDuckDuckGoSuggestions(oq.search);
         const formatted = Search.#attachSearchPrefix(res, oq);
         suggestions = suggestions.concat(formatted);
       }
-
       const nq = Search.#parseQuery(this.#input.value);
       if (nq.query !== oq.query) return;
       this.#renderSuggestions(suggestions, oq.query);
     };
-
     #onKeydown = (e) => {
       if (!this.#dialog.open) {
         this.#dialog.show();
         this.#input.focus();
-
         requestAnimationFrame(() => {
           // close the search dialog before the next repaint if a character is
           // not produced (e.g. if you type shift, control, alt etc.)
           if (!this.#input.value) this.#close();
         });
-
         return;
       }
-
       if (e.key === 'Escape') {
         this.#close();
         return;
       }
-
       const alt = e.altKey ? 'alt-' : '';
       const ctrl = e.ctrlKey ? 'ctrl-' : '';
       const meta = e.metaKey ? 'meta-' : '';
       const shift = e.shiftKey ? 'shift-' : '';
       const modifierPrefixedKey = `${alt}${ctrl}${meta}${shift}${e.key}`;
-
       if (/^(ArrowDown|Tab|ctrl-n)$/.test(modifierPrefixedKey)) {
         e.preventDefault();
         this.#focusNextSuggestion();
         return;
       }
-
       if (/^(ArrowUp|ctrl-p|shift-Tab)$/.test(modifierPrefixedKey)) {
         e.preventDefault();
         this.#focusNextSuggestion(true);
       }
     };
-
     #onSubmit = () => {
       this.#execute(this.#input.value);
     };
-
     #onSuggestionClick = (e) => {
       const ref = e.target.closest('.suggestion');
       if (!ref) return;
       this.#execute(ref.dataset.suggestion);
     };
-
     #renderSuggestions(suggestions, query) {
       this.#suggestions.innerHTML = '';
       const sliced = suggestions.slice(0, CONFIG.suggestionLimit);
       const template = document.getElementById('suggestion-template');
-
       for (const [index, suggestion] of sliced.entries()) {
         const clone = template.content.cloneNode(true);
         const ref = clone.querySelector('.suggestion');
@@ -690,7 +557,6 @@
         ref.dataset.suggestion = suggestion;
         const escapedQuery = Search.#escapeRegexCharacters(query);
         const matched = suggestion.match(new RegExp(escapedQuery, 'i'));
-
         if (matched) {
           const template = document.getElementById('match-template');
           const clone = template.content.cloneNode(true);
@@ -704,15 +570,12 @@
         } else {
           ref.innerText = suggestion;
         }
-
         this.#suggestions.append(clone);
       }
     }
   }
-
   customElements.define('search-component', Search);
 </script>
-
 <template id="rain-template">
   <style>
     canvas {
@@ -724,7 +587,6 @@
   </style>
   <canvas class="rain"></canvas>
 </template>
-
 <script type="module">
   class Rain extends HTMLElement {
     #backgroundColor;
@@ -735,14 +597,17 @@
     #rainColor;
     #rainHeight;
     #rainWidth;
-
     constructor() {
       super();
-      this.attachShadow({ mode: 'open' });
+      this.attachShadow({
+        mode: 'open'
+      });
       const template = document.getElementById('rain-template');
       const clone = template.content.cloneNode(true);
       this.#canvas = clone.querySelector('.rain');
-      this.#ctx = this.#canvas.getContext('2d', { alpha: false });
+      this.#ctx = this.#canvas.getContext('2d', {
+        alpha: false
+      });
       this.#renderCanvas();
       const rerender = Rain.debounce(this.#renderCanvas, CONFIG.rainFrameRate);
       const mq = '(prefers-color-scheme: light)';
@@ -750,20 +615,16 @@
       window.addEventListener('resize', rerender);
       this.shadowRoot.append(clone);
     }
-
     static cssVar(name) {
       return getComputedStyle(document.body).getPropertyValue(name);
     }
-
     static debounce(fn, delay) {
       let timeout;
-
       return () => {
         clearTimeout(timeout);
         timeout = setTimeout(() => fn.apply(this, arguments), delay);
       };
     }
-
     #renderCanvas = () => {
       this.#canvas.height = window.innerHeight;
       this.#canvas.width = window.innerWidth;
@@ -777,20 +638,17 @@
       this.#lastRender = performance.now();
       requestAnimationFrame(this.#renderRain);
     };
-
     #renderRain = (timestamp) => {
       if (timestamp - this.#lastRender >= CONFIG.rainFrameRate) {
         this.#ctx.fillStyle = this.#backgroundColor;
         this.#ctx.globalAlpha = CONFIG.rainFade;
         this.#ctx.fillRect(0, 0, this.#canvas.width, this.#canvas.height);
-
         for (let i = 0; i < this.#drops.length; i++) {
           this.#ctx.fillStyle = this.#rainColor;
           this.#ctx.globalAlpha = 1;
           const x = i * this.#rainWidth;
           const y = this.#drops[i] * this.#rainHeight;
           this.#ctx.fillRect(x, y, this.#rainWidth, this.#rainHeight);
-
           if (this.#drops[i] <= 4) {
             // fully fade out previous rain drop streak
             this.#ctx.fillStyle = this.#backgroundColor;
@@ -799,22 +657,17 @@
             const eraseHeight = this.#canvas.height - eraseY;
             this.#ctx.fillRect(x, eraseY, this.#rainWidth, eraseHeight);
           }
-
           const reset = Math.random() > CONFIG.rainResilience;
           if (reset || y > this.#canvas.height) this.#drops[i] = 0;
           else this.#drops[i]++;
         }
-
         this.#lastRender = timestamp;
       }
-
       requestAnimationFrame(this.#renderRain);
     };
   }
-
   customElements.define('rain-component', Rain);
 </script>
-
 <style>
   html {
     background-color: var(--color-background);
@@ -839,7 +692,6 @@
     width: 100vw;
   }
 </style>
-
 <main>
   <rain-component></rain-component>
   <commands-component></commands-component>
